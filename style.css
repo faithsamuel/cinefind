@@ -21,3 +21,148 @@ input {
 button {
   cursor: pointer;
 }
+
+/* Header */
+
+.logo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.hero {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(92, 45, 145, 0.35),
+      transparent 60%
+    );
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 750px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.description {
+  max-width: 550px;
+  margin: 0 auto 32px;
+  
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #a7adba;
+}
+
+.search-form {
+  display: flex;
+  max-width: 650px;
+  margin: 0 auto;
+  
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 6px;
+}
+
+.search-form input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 16px;
+  
+  font-size: 1rem;
+  color: #222;
+  background: transparent;
+}
+
+.search-form button {
+  border: none;
+  border-radius: 8px;
+  padding: 0 24px;
+  
+  background: #7c3aed;
+  color: #ffffff;
+  
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.search-form button:hover {
+  background: #6d28d9;
+  transform: translateY(-1px);
+}
+
+/* Results Section */
+
+.results-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+.results-section h2 {
+  margin-bottom: 24px;
+  font-size: 1.75rem;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+
+/* Media queries */
+
+@media (max-width: 900px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .logo {
+    padding: 20px;
+  }
+
+  .hero {
+    min-height: 450px;
+    padding: 60px 20px;
+  }
+
+  .search-form {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .search-form button {
+    min-height: 48px;
+  }
+
+  .results-section {
+    padding: 32px 20px 60px;
+  }
+
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
