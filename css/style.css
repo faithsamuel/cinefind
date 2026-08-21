@@ -129,7 +129,49 @@ button {
 }
 
 
-/* Media queries */
+.movie-card{
+  overflow: hidden;
+  border-radius: 12px;
+  background: #181b24;
+  transition: transform 0.2s ease;
+}
+
+.movie-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-info {
+  padding: 16px;
+}
+
+.movie-info h3 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #a7adba;
+  font-size: 0.85rem;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+footer {
+  padding: 32px 20px;
+  text-align: center;
+  color: #a7adba;
+  font-size: 0.85rem;
+}
+
+
+/* ===================Media queries =====================================*/
 
 @media (max-width: 900px) {
   .movie-grid {
