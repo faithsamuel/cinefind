@@ -109,6 +109,13 @@ button {
   transform: translateY(-1px);
 }
 
+.search-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: #a7adba;
+}
+
 /* Results Section */
 
 .results-section {
