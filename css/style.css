@@ -170,6 +170,73 @@ button {
   transform: translateY(-5px);
 }
 
+
+/* Hide details Initially */
+.movie-details {
+  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+/* Style the details page */
+
+.back-button {
+  border: none;
+  background: transparent;
+  color: #a7adba;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 32px;
+}
+
+.back-button:hover {
+  color: #ffffff;
+}
+
+.details-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.details-poster img {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+}
+
+.details-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.details-meta {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  color: #a7adba;
+}
+
+.details-genre {
+  color: #a78bfa;
+  margin-bottom: 24px;
+}
+
+.details-plot {
+  color: #d1d5db;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.details-info > p {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Footer */
+
 footer {
   padding: 32px 20px;
   text-align: center;
