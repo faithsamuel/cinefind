@@ -41,10 +41,19 @@ function displayMovieDetails(movie) {
 }
 
   async function getMovieDetails(imdbID) {
-  const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`;
+    detailsContent.innerHTML = `
+    <p class="search-message">Loading movie details...</p>
+  `;
+
+  try {
+    
+  } catch (error) {
+    const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`;
 
   const response = await fetch(API_URL);
   const data = await response.json();
+  }
+  
 
   // console.log(data);
 
@@ -56,6 +65,7 @@ function displayMovieDetails(movie) {
 
   // Displays Movies
   function displayMovies(movies){
+
     movieGrid.innerHTML = "";
     movies.map((movie) => {
         const poster =
