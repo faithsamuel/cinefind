@@ -46,19 +46,31 @@ function displayMovieDetails(movie) {
   `;
 
   try {
+     const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`;
+
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    if (data.Response === "True") {
+      displayMovieDetails(data);
+    } else {
+      detailsContent.innerHTML = `
+        <p class="search-message">${data.Error}</p>
+      `;
+    }
     
   } catch (error) {
-    const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`;
+   console.error(error);
 
-  const response = await fetch(API_URL);
-  const data = await response.json();
+    detailsContent.innerHTML = `
+      <p class="search-message">
+        Something went wrong. Please try again.
+      </p>
+    `;
   }
-  
-
-  // console.log(data);
-
-  displayMovieDetails(data);
 }
+
+
 
   getMovieDetails("tt0372784");
 
