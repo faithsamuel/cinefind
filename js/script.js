@@ -6,6 +6,7 @@ const API_KEY = "";
   const movieDetails = document.querySelector("#movie-details");
 const detailsContent = document.querySelector(".details-content");
 const backButton = document.querySelector(".back-button");
+const resultsHeading = document.querySelector(".results-heading");
 
 // Poster HelperFnc
 function getPosterUrl(poster) {
@@ -128,6 +129,7 @@ function displayMovieDetails(movie) {
 
     if(data.Response === "True") {
         displayMovies(data.Search);
+        resultsHeading.textContent = `Results for "${movie}" (${data.totalResults})`;
     } else {
         movieGrid.innerHTML = `
   <p class="search-message">${data.Error}</p>
