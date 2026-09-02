@@ -7,15 +7,25 @@ const API_KEY = "";
 const detailsContent = document.querySelector(".details-content");
 const backButton = document.querySelector(".back-button");
 
+// Poster HelperFnc
+function getPosterUrl(poster) {
+  return poster !== "N/A" ? poster : "./assets/images/placeholder-poster.png"
+}
 
+// N/A HelperFnc
+function formatValue(value) {
+  return value && value !== "N/A" ? value : "Not available";
+}
 
 // Display Movie details
 
 function displayMovieDetails(movie) {
+  const poster = getPosterUrl(movie.Poster);
+
   detailsContent.innerHTML = `
     <div class="details-poster">
       <img
-        src="${movie.Poster}"
+        src="${poster}"
         alt="${movie.Title} movie poster"
       />
     </div>
@@ -25,17 +35,17 @@ function displayMovieDetails(movie) {
 
       <div class="details-meta">
         <span>${movie.Year}</span>
-        <span>${movie.Runtime}</span>
-        <span>⭐ ${movie.imdbRating}</span>
+        <span>${formatValue(movie.Runtime)}</span>
+        <span>⭐ ${formatValue(movie.imdbRating)}</span>
       </div>
 
-      <p class="details-genre">${movie.Genre}</p>
+      <p class="details-genre">${formatValue(movie.Genre)}</p>
 
-      <p class="details-plot">${movie.Plot}</p>
+      <p class="details-plot">${formatValue(movie.Plot)}</p>
 
-      <p><strong>Director:</strong> ${movie.Director}</p>
+      <p><strong>Director:</strong> ${formatValue(movie.Director)}</p>
 
-      <p><strong>Actors:</strong> ${movie.Actors}</p>
+      <p><strong>Actors:</strong> ${formatValue(movie.Actors)}</p>
     </div>
   `;
 }
@@ -81,12 +91,10 @@ function displayMovieDetails(movie) {
     movieGrid.innerHTML = "";
     movies.map((movie) => {
         const poster =
-      movie.Poster !== "N/A"
-        ? movie.Poster
-        : "./assets/images/placeholder-poster.png";
+      getPosterUrl(movie.Poster);
 
         const movieCard = `
-          <div class="movie-card" data-imdb-id="${movie.imdbID}>
+          <div class="movie-card" data-imdb-id="${movie.imdbID}">
          <img
           src="${poster}"
           alt="${movie.Title} movie poster"
@@ -155,11 +163,15 @@ function displayMovieDetails(movie) {
 
     const imdbID = movieCard.dataset.imdbId;
 
-    // console.log(imdbID);
-    getMovieDetails(imdbID);
-
     document.querySelector(".results-section").style.display = "none";
 movieDetails.style.display = "block";
+
+     window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+    getMovieDetails(imdbID);
   })
 
 
