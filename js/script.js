@@ -2,6 +2,7 @@ const API_KEY = "";
 
   const searchForm = document.querySelector(".search-form");
   const searchInput = document.querySelector('input[name="movie"]');
+  const searchButton = document.querySelector(".search-button");
   const movieGrid = document.querySelector(".movie-grid");
   const movieDetails = document.querySelector("#movie-details");
 const detailsContent = document.querySelector(".details-content");
@@ -95,7 +96,7 @@ function displayMovieDetails(movie) {
       getPosterUrl(movie.Poster);
 
         const movieCard = `
-          <div class="movie-card" data-imdb-id="${movie.imdbID}">
+          <div class="movie-card" data-imdb-id="${movie.imdbID}" tabindex="0" role="button" aria-label="View details for ${movie.Title}">
          <img
           src="${poster}"
           alt="${movie.Title} movie poster"
@@ -121,6 +122,11 @@ function displayMovieDetails(movie) {
     movieGrid.innerHTML = `
   <p class="search-message">Searching for movies...</p>
 `;
+   
+  searchButton.disabled = true;
+  searchButton.textContent = "Searching...";
+
+
    try {
      const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${movie}`;
 
@@ -128,9 +134,12 @@ function displayMovieDetails(movie) {
     const data = await response.json();
 
     if(data.Response === "True") {
-        displayMovies(data.Search);
         resultsHeading.textContent = `Results for "${movie}" (${data.totalResults})`;
+
+        displayMovies(data.Search);
     } else {
+      resultsHeading.textContent = "Search results";
+
         movieGrid.innerHTML = `
   <p class="search-message">${data.Error}</p>
 `;
@@ -143,6 +152,9 @@ function displayMovieDetails(movie) {
         Something went wrong. Please try again.
       </p>
     `;
+   } finally {
+    searchButton.disabled = false;
+    searchButton.textContent = "Search";
    }
   }
 
@@ -153,12 +165,18 @@ function displayMovieDetails(movie) {
   
     const movie = searchInput.value.trim();
 
-    if (movie) {
-        searchMovies(movie)
+    if (!movie) {
+        movieGrid.innerHTML = ` <p class="search-message">
+      Please enter a movie title to search.
+    </p>`;
+
+        return;
     }
+    searchMovies(movie);
   })
 
   movieGrid.addEventListener("click", (event)=> {
+    if(event.key !== "Enter") return;
     const movieCard = event.target.closest(".movie-card");
 
     if(!movieCard) return;

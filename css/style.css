@@ -109,6 +109,11 @@ button {
   transform: translateY(-1px);
 }
 
+  .search-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .search-message {
   grid-column: 1 / -1;
   text-align: center;
@@ -140,8 +145,10 @@ button {
   overflow: hidden;
   border-radius: 12px;
   background: #181b24;
+  cursor: pointer;
   transition: transform 0.2s ease;
 }
+
 
 .movie-card img {
   width: 100%;
@@ -272,6 +279,8 @@ footer {
   .search-form button {
     min-height: 48px;
   }
+
+
 
   .results-section {
     padding: 32px 20px 60px;
