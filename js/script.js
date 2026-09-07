@@ -176,7 +176,7 @@ function displayMovieDetails(movie) {
   })
 
   movieGrid.addEventListener("click", (event)=> {
-    if(event.key !== "Enter") return;
+   
     const movieCard = event.target.closest(".movie-card");
 
     if(!movieCard) return;
@@ -190,6 +190,36 @@ movieDetails.style.display = "block";
     top: 0,
     behavior: "smooth"
   });
+
+// Key press
+
+
+
+    getMovieDetails(imdbID);
+  })
+
+
+  //Keypress
+  
+   movieGrid.addEventListener("keydown", (event)=> {
+     if (event.key !== "Enter") return;
+    const movieCard = event.target.closest(".movie-card");
+
+    if(!movieCard) return;
+
+    const imdbID = movieCard.dataset.imdbId;
+
+    document.querySelector(".results-section").style.display = "none";
+movieDetails.style.display = "block";
+
+     window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+// Key press
+
+
 
     getMovieDetails(imdbID);
   })
