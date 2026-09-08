@@ -166,9 +166,14 @@ function displayMovieDetails(movie) {
     const movie = searchInput.value.trim();
 
     if (!movie) {
-        movieGrid.innerHTML = ` <p class="search-message">
-      Please enter a movie title to search.
-    </p>`;
+      searchInput.value = "";
+      resultsHeading.textContent = "Search results";
+
+        movieGrid.innerHTML = ` <div class="empty-state">
+      <div class="empty-state-icon">🎬</div>
+      <h3>What would you like to watch?</h3>
+      <p>Enter a movie title above to start searching.</p>
+    </div>`;
 
         return;
     }
